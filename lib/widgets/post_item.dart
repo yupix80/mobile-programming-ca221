@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/widgets/add_comment.dart';
 import 'package:myapp/resources/dimentions.dart';
 import 'package:myapp/widgets/post_action.dart';
 import 'package:myapp/widgets/post_title.dart';
@@ -13,6 +14,12 @@ class PostItem extends StatelessWidget {
 
   final Moment moment;
 
+  void _navigateToCreateComment(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => const AddComment()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -25,7 +32,6 @@ class PostItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(extraLargeSize),
           image: DecorationImage(
-            // image: AssetImage('assets/images/moments_background_dark.png'),
             image: NetworkImage(moment.imageUrl),
             fit: BoxFit.cover,
           ),
@@ -48,9 +54,13 @@ class PostItem extends StatelessWidget {
                         icon: 'assets/icons/fi-br-heart.svg',
                         label: moment.likeCount.toString(),
                       ),
-                      PostAction(
-                        icon: 'assets/icons/fi-br-comment.svg',
-                        label: moment.commentCount.toString(),
+                      // Handle klik komentar disini
+                      GestureDetector(
+                        onTap: () => _navigateToCreateComment(context),
+                        child: PostAction(
+                          icon: 'assets/icons/fi-br-comment.svg',
+                          label: moment.commentCount.toString(),
+                        ),
                       ),
                       PostAction(
                         icon: 'assets/icons/fi-br-bookmark.svg',

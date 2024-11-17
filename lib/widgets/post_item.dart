@@ -4,7 +4,8 @@ import 'package:myapp/widgets/post_action.dart';
 import 'package:myapp/widgets/post_title.dart';
 
 import '../models/moment.dart';
-import '../pages/commment_page.dart';
+import '../pages/comment_page.dart';
+import '../pages/comment_list.dart';
 
 class PostItem extends StatelessWidget {
   const PostItem({
@@ -13,6 +14,8 @@ class PostItem extends StatelessWidget {
   });
 
   final Moment moment;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,7 @@ class PostItem extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (context) {
-                            return CommentPage(onSaved: (_) {});
+                            return CommentView(onSaved: (_) {});
                           }));
                         },
                       ),

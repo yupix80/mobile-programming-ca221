@@ -21,3 +21,4 @@ class Moment {
     this.bookmarkCount = 0,
   });
 }
+

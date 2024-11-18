@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/models/yupiterfilm.dart';
 import 'package:myapp/resources/dimentions.dart';
 import 'package:nanoid2/nanoid2.dart';
 
@@ -18,6 +19,7 @@ class _MomentCreatePageState extends State<MomentCreatePage> {
   // Membuat object form global key
   final _formKey = GlobalKey<FormState>();
   final _dataMoment = {};
+  final _dataYupiter ={};
 
   // Membuat method untuk menyimpan data moment
   void _saveMoment() {
@@ -40,11 +42,33 @@ class _MomentCreatePageState extends State<MomentCreatePage> {
     }
   }
 
+  void _saveyupiterfilm() {
+    if (_formKey.currentState!.validate()) {
+      // ganti ke object yupiterfilm
+      _formKey.currentState!.save();
+      // Membuat object baru
+      final yupiterfilm = Yupiterfilm(
+        id: nanoid(),
+        yupiterfilmdate: _dataYupiter['yupiterfilmdate'],
+        judul:  _dataYupiter['judul'],
+        genre:  _dataYupiter['genre'],
+        daftarpemain:  _dataYupiter['daftarpemain'],
+        deskripsi:  _dataYupiter['deskripsi'],
+        liketotal:  _dataYupiter['liketotal'],
+        savedtotal:  _dataYupiter['savedtotal'],
+      );
+      // Menyimpan object moment ke list _moments
+      widget.onSaved(yupiterfilm);
+      // Menutup halaman create moment
+      Navigator.of(context).pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Moment'),
+        title: const Text('Add Film'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(largeSize),
@@ -54,13 +78,13 @@ class _MomentCreatePageState extends State<MomentCreatePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text('Moment Date'),
+                const Text('Tanggal'),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    hintText: 'Select Date',
+                    hintText: 'Input tanggal',
                     prefixIcon: const Icon(Icons.calendar_month),
                   ),
                   keyboardType: TextInputType.datetime,
@@ -79,13 +103,13 @@ class _MomentCreatePageState extends State<MomentCreatePage> {
                     }
                   },
                 ),
-                const Text('Creator'),
+                const Text('Contributor'),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    hintText: 'Moment creator',
+                    hintText: 'Nama anda',
                     prefixIcon: const Icon(Icons.person),
                   ),
                   keyboardType: TextInputType.name,
@@ -101,13 +125,13 @@ class _MomentCreatePageState extends State<MomentCreatePage> {
                     }
                   },
                 ),
-                const Text('Location'),
+                const Text('Lokasi'),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    hintText: 'Moment location',
+                    hintText: 'Lokasi saat ini',
                     prefixIcon: const Icon(Icons.location_pin),
                   ),
                   keyboardType: TextInputType.streetAddress,
@@ -122,20 +146,41 @@ class _MomentCreatePageState extends State<MomentCreatePage> {
                       _dataMoment['location'] = newValue;
                     }
                   },
-                ),
-                const Text('Image URL'),
+                ), const Text('Judul),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    hintText: 'Moment image URL',
+                    hintText: 'Judul film',
+                    prefixIcon: const Icon(Icons.note),
+                  ),
+                  keyboardType: TextInputType.multiline,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Isi keterangan';
+                    }
+                    return null;
+                  },
+                  onSaved: (newValue) {
+                    if (newValue != null) {
+                      _dataYupiter['judul'] = newValue;
+                    }
+                  },
+                ),
+                const Text('Film Cover'),
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(0.0),
+                    ),
+                    hintText: 'Image url',
                     prefixIcon: const Icon(Icons.image),
                   ),
                   keyboardType: TextInputType.url,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter moment image URL';
+                      return 'Masukkan lokasi url valid';
                     }
                     return null;
                   },
@@ -151,13 +196,13 @@ class _MomentCreatePageState extends State<MomentCreatePage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    hintText: 'Moment description',
+                    hintText: 'details',
                     prefixIcon: const Icon(Icons.note),
                   ),
                   keyboardType: TextInputType.multiline,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter moment caption';
+                      return 'Isi keterangan';
                     }
                     return null;
                   },

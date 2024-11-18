@@ -71,7 +71,7 @@ class _MainPageState extends State<MainPage> {
       HomePage(moments: _moments),
       SearchPage(moments: _moments),
       const Center(
-        child: Text('Create Moment'),
+        child: Text('Add Film'),
       ),
       const Center(
         child: Text('Activity'),
@@ -83,7 +83,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
-          'assets/images/moments_text.png',
+          'assets/images/yupiterfilm_logo.png',
           height: 32,
         ),
         centerTitle: true,
@@ -96,7 +96,7 @@ class _MainPageState extends State<MainPage> {
             activeIcon: SvgPicture.asset(
               'assets/icons/fi-sr-home.svg',
               colorFilter:
-                  const ColorFilter.mode(primaryColor, BlendMode.srcIn),
+                  const ColorFilter.mode(Color.fromARGB(255, 238, 103, 0), BlendMode.srcIn),
             ),
             label: 'Home',
           ),
@@ -105,36 +105,27 @@ class _MainPageState extends State<MainPage> {
             activeIcon: SvgPicture.asset(
               'assets/icons/fi-sr-search.svg',
               colorFilter:
-                  const ColorFilter.mode(primaryColor, BlendMode.srcIn),
+                  const ColorFilter.mode(Color.fromARGB(255, 187, 164, 146), BlendMode.srcIn),
             ),
-            label: 'Search',
+            label: 'Pencarian',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset('assets/icons/fi-br-add.svg'),
             activeIcon: SvgPicture.asset(
               'assets/icons/fi-sr-add.svg',
               colorFilter:
-                  const ColorFilter.mode(primaryColor, BlendMode.srcIn),
+                  const ColorFilter.mode(Color.fromARGB(255, 0, 5, 10), BlendMode.srcIn),
             ),
-            label: 'Create',
+            label: 'Add Film',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset('assets/icons/fi-br-heart.svg'),
             activeIcon: SvgPicture.asset(
               'assets/icons/fi-sr-heart.svg',
               colorFilter:
-                  const ColorFilter.mode(primaryColor, BlendMode.srcIn),
+                  const ColorFilter.mode(Color.fromARGB(255, 238, 7, 226), BlendMode.srcIn),
             ),
-            label: 'Activity',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/fi-br-portrait.svg'),
-            activeIcon: SvgPicture.asset(
-              'assets/icons/fi-sr-portrait.svg',
-              colorFilter:
-                  const ColorFilter.mode(primaryColor, BlendMode.srcIn),
-            ),
-            label: 'Profile',
+            label: 'Favorite Film',
           ),
         ],
         selectedItemColor: primaryColor,

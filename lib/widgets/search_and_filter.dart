@@ -59,7 +59,7 @@ class _SearchAndFilterState extends State<SearchAndFilter> {
             onPressed: () {},
           ),
         ),
-        hintText: 'Cari moment...',
+        hintText: 'Cari film apa ?',
       ),
       textInputAction: TextInputAction.search,
       keyboardType: TextInputType.text,

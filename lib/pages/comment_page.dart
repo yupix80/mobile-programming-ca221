@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/resources/dimentions.dart';
-
+import '../models/yupiterfilm.dart';
 import '../models/moment.dart';
 import '../resources/colors.dart';
 

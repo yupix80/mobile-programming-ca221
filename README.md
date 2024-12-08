@@ -3,4 +3,4 @@
 > CA211 - Mobile Programming  
   
 Tampilan UI saat membuka list komentar post :  
-<img src="https://github.com/yupix80/mobile-programming-ca221/blob/tugas_pertemuan07/Screenshot_306.png" width="256"/>
+<img src="https://github.com/yupix80/mobile-programming-ca221/blob/tugas_pertemuan09/Screenshot_306.png" width="256"/>
